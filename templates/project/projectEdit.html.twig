@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+
+    {{form_start(form,{"attr":{"novalidate":"novalidate"}}) }}
+    {{form_row(form.name)}}
+
+    {{form_row(form.description)}}
+
+    {{form_row(form.date)}}
+    <button type="submit" class="btn btn-primary">Change</button>
+    {{form_end(form)}}
+
+</div>
+{% endblock body %}

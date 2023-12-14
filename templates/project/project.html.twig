@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+{% block body %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 col-5">
+
+    {{form_start(form,{"attr":{"novalidate":"novalidate"}}) }}
+    {{form_row(form.name)}}
+
+    {{form_row(form.description)}}
+
+    {{form_row(form.date)}}
+
+    <button class="btn btn-primary" type="submit">Add</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td scope="row">{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.date ? project.date|date('Y-m-d H:i:s') : '' }}</td>
+
+            </tr>
+            <td>
+
+
+                <a class="btn btn-danger col-6" href="{{ path('delete_project', {'id': project.id}) }}">delete</a>
+                <a class="btn btn-success col" href="{{ path('edit_project', {'id': project.id}) }}">update</a>
+                <a class="btn btn-info col" href="{{ path('read_project', {'id': project.id}) }}">details</a>
+
+            </td>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{form_end(form)}}
+</div>
+{% else %}
+<div class="alert alert-danger">this content is only for authenticated users </div>
+<a href="/login">login</a>
+
+{% endif %}
+
+
+
+
+{% endblock body %}

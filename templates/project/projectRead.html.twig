@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+{% block body %}
+<div class="col-xl-7 col-lg-7 col-md-5 col-sm-5 col-5">
+    < <div class="card">
+
+        <div class="card-body">
+            <h3>Name: {{project.name}}</h3>
+            <h3>Descritpion:{{project.description}}</h3>
+            <h3>Date:{{ project.date ? project.date|date('Y-m-d H:i:s') : '' }}</h3>
+        </div>
+</div>
+</div>
+{% endblock body %}
